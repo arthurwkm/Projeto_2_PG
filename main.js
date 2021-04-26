@@ -15,9 +15,9 @@ PosicaoYinversa[0]=[];      //incializando a primeira posição será um array
 var PontoAtual=0;           //Ponto referenciado no pelo click da curva normal
 var PontoCurvaX=[];         //Posições X de todos os pontos da curva 
 var PontoCurvaY=[];         //Posições Y de todos os pontos da curva
-var numeroDeSegmentos=100;  //numero de segmentos da curva
-ctx.fillStyle ='blue';      //cor botões e textos
-ctx.font="10px Arial";      //tamanho do texto 
+var numeroDeAvaliacoes=100;  //numero de Avaliacoes da curva
+ctx.fillStyle ='black';      //cor botões e textos
+ctx.font="11px Roboto";      //tamanho do texto 
 
 var esconderpontos = {    //botao esconde pontos de controle
     x: 20,
@@ -29,28 +29,28 @@ var esconderpoligonalnormal = {  //botao esconde poligonal normal
     x: 20,
     y: 70,
 };
-ctx.fillText("Esconder Poligonal Normal",40,75);//texto de poligonal normal
+ctx.fillText("Esconder Poligonal Normal (Linhas Laranjas)",40,75);//texto de poligonal normal
 var poligonalnormalescondida=false;  //estado da poligonal normal
 var corpoligonalnormal="orange"; //cor da poligonal normal
 var esconderpoligonalinversa = {  //botao esconde poligonal inversa 
     x: 20,
     y: 120 , 
 };
-ctx.fillText("Esconder Poligonal Inversa",40,125);//texto de poligonal inversa
+ctx.fillText("Esconder Poligonal Inversa (Linhas Pretas)",40,125);//texto de poligonal inversa
 var poligonalinversaescondida=false; //estado da poligonal inversa 
 var corpoligonalinversa="black";   //cor da poligonal inversa
 var escondernormal = {      //botao esconde  da curva normal
     x: 20,
     y: 170,
 };
-ctx.fillText("Esconder Curva Normal",40,175);//texto de curva normal
+ctx.fillText("Esconder Curva Normal (Curva Verde)",40,175);//texto de curva normal
 var curvanormalescondida=false; //estado da curva normal
 var corcurvanomal="green";   //cor da curva normal 
 var esconderinversa = {   //botao  esconde curva inversa 
     x: 20,
     y: 220,
 };
-ctx.fillText("Esconder Curva Inversa",40,225);//texto de curva inversa
+ctx.fillText("Esconder Curva Inversa (Curva Vermelha)",40,225);//texto de curva inversa
 var curvainversaescondida=false; //estado da curva inversa
 var corcurvainversa='red';   //cor da curva inversa
 var LimparTudo={  //botao limpa tudo
@@ -59,37 +59,37 @@ var LimparTudo={  //botao limpa tudo
 };
 ctx.fillText("Limpa Tudo",40,275);//texto de limpar tudo
 var limpado=false;  //estado do botao limpar tudo
-var diminuirSegmento1={ //botao  de diminuir 1 segmentos 
+var diminuirSegmento1={ //botao  de diminuir 1 Avaliacoes 
     x: 20,
     y: 320,
 };
-ctx.fillText("Diminui Quantidade Segmentos em 1",40,325); //texto de diminuir  quantidade segmentos
+ctx.fillText("Diminui Quantidade Avaliacoes em 1 (Começa em 100)",40,325); //texto de diminuir  quantidade Avaliacoes
 
-var AumentaSegmento1={ //botao  de aumentar 1 segmentos 
+var AumentaSegmento1={ //botao  de aumentar 1 Avaliacoes 
     x: 20,
     y: 370,
 };
-ctx.fillText("Aumenta Quantidade Segmentos em 1",40,375);//texto de  aumentar quantidade de segmentos
+ctx.fillText("Aumenta Quantidade Avaliacoes em 1 (Começa em 100)",40,375);//texto de  aumentar quantidade de Avaliacoes
 
-var diminuirSegmento100={ //botao  de diminuir 100 segmentos 
+var diminuirSegmento100={ //botao  de diminuir 100 Avaliacoes 
     x: 20,
     y: 420,
 };
-ctx.fillText("Diminui Quantidade Segmentos em 100",40,425); //texto de diminuir  quantidade segmentos
+ctx.fillText("Diminui Quantidade Avaliacoes em 100 (Começa em 100)",40,425); //texto de diminuir  quantidade Avaliacoes
 
-var AumentaSegmento100={ //botao  de aumentar 100 segmentos 
+var AumentaSegmento100={ //botao  de aumentar 100 Avaliacoes 
     x: 20,
     y: 470,
 };
-ctx.fillText("Aumenta Quantidade Segmentos em 100",40,475);//texto de  aumentar quantidade de segmentos
+ctx.fillText("Aumenta Quantidade Avaliacoes em 100 (Começa em 100)",40,475);//texto de  aumentar quantidade de Avaliacoes
 
-var ZeraSegmentos={ //botao zera segmentos
+var ZeraAvaliacoes={ //botao zera Avaliacoes
     x: 20,
     y: 520,
 };
-ctx.fillText("Zera Quantidade Segmentos",40,525);//texto de zerar segmentos
+ctx.fillText("Zera Quantidade Avaliacoes",40,525);//texto de zerar Avaliacoes
 var zerado=false;
-ctx.fillText("Quantidade Segmentos Original 100",40,575);//texto de quantidade segmentos original
+
 
 ctx.beginPath();             //começa desenho
 ctx.arc(esconderpontos.x,esconderpontos.y,10,0,2*Math.PI);   //desenha botao 
@@ -102,8 +102,8 @@ ctx.arc(diminuirSegmento1.x,diminuirSegmento1.y,10,0,2*Math.PI);//desenha botao
 ctx.arc(AumentaSegmento1.x,AumentaSegmento1.y,10,0,2*Math.PI);//desenha botao 
 ctx.arc(diminuirSegmento100.x,diminuirSegmento100.y,10,0,2*Math.PI);//desenha botao 
 ctx.arc(AumentaSegmento100.x,AumentaSegmento100.y,10,0,2*Math.PI);//desenha botao 
-ctx.arc(ZeraSegmentos.x,ZeraSegmentos.y,10,0,2*Math.PI);//desenha botao
-ctx.fillStyle ='blue'; //cor dos botoes
+ctx.arc(ZeraAvaliacoes.x,ZeraAvaliacoes.y,10,0,2*Math.PI);//desenha botao
+ctx.fillStyle ='black'; //cor dos botoes
 ctx.fill();     //preenche
 ctx.closePath(); //termina desenho
 
@@ -207,7 +207,7 @@ function isInAumentar100(click){  //checa se está clicando em um botao
     }
 return false; //se não, retorna que está fora do botao
 }
-function isInZeraSegmentos(click){  //checa se está clicando em um botao            
+function isInZeraAvaliacoes(click){  //checa se está clicando em um botao            
     var v = {                                        //v é a difença entre o click e a posicao do botão
         x: click.x-20,
         y: click.y-520,
@@ -219,13 +219,13 @@ return false; //se não, retorna que está fora do botao
 }
 
 function CastelijauNormal(){       //Calcula Castelijau para a curva normal
-for(var t=0;t<numeroDeSegmentos;t++){            //suavidade da curva em segmentos do t inicial 0 ate o numeroDeSegmentos
+for(var t=0;t<numeroDeAvaliacoes;t++){            //suavidade da curva em Avaliacoes do t inicial 0 ate o numeroDeAvaliacoes
 for(var i=1;i<QuantidadePontos;i++){  //indice dos potos de controle, a partir de 1 pois se fosse 0 calcularia  indice castelijau -1;
     PosicaoXnormal[i]=[];              //transforma o array em bidimensional
     PosicaoYnormal[i]=[];              //transforma o array em bidimensional
     for(var j=0;j<QuantidadePontos-i;j++){   //grau dos pontos de controle
-        PosicaoXnormal[i][j]=(1-(t/(numeroDeSegmentos-1)))*PosicaoXnormal[i-1][j]+(t/(numeroDeSegmentos-1))*PosicaoXnormal[i-1][j+1];  //calcula castelijau
-        PosicaoYnormal[i][j]=(1-(t/(numeroDeSegmentos-1)))*PosicaoYnormal[i-1][j]+(t/(numeroDeSegmentos-1))*PosicaoYnormal[i-1][j+1];  //calcula castelijau
+        PosicaoXnormal[i][j]=(1-(t/(numeroDeAvaliacoes-1)))*PosicaoXnormal[i-1][j]+(t/(numeroDeAvaliacoes-1))*PosicaoXnormal[i-1][j+1];  //calcula castelijau
+        PosicaoYnormal[i][j]=(1-(t/(numeroDeAvaliacoes-1)))*PosicaoYnormal[i-1][j]+(t/(numeroDeAvaliacoes-1))*PosicaoYnormal[i-1][j+1];  //calcula castelijau
     }
 }
    //atribui os pontos da curva  normal 
@@ -234,13 +234,13 @@ for(var i=1;i<QuantidadePontos;i++){  //indice dos potos de controle, a partir d
 }
 }
 function CastelijauInversa(){     //Calcula Castelijau para a curva inversa
-    for(var t=0;t<numeroDeSegmentos;t++){     //suavidade da curva em segmentos do t inicial 0 ate o numeroDeSegmentos
+    for(var t=0;t<numeroDeAvaliacoes;t++){     //suavidade da curva em Avaliacoes do t inicial 0 ate o numeroDeAvaliacoes
     for(var i=1;i<QuantidadePontos;i++){   //indice dos potos de controle, a partir de 1 pois se fosse 0 calcularia  indice castelijau -1;
         PosicaoXinversa[i]=[];            //transforma o array em bidimensional
         PosicaoYinversa[i]=[];            //transforma o array em bidimensional
         for(var j=0;j<QuantidadePontos-i;j++){  //grau dos pontos de controle
-            PosicaoXinversa[i][j]=(1-(t/(numeroDeSegmentos-1)))*PosicaoXinversa[i-1][j]+(t/(numeroDeSegmentos-1))*PosicaoXinversa[i-1][j+1];  //calcula castelijau
-            PosicaoYinversa[i][j]=(1-(t/(numeroDeSegmentos-1)))*PosicaoYinversa[i-1][j]+(t/(numeroDeSegmentos-1))*PosicaoYinversa[i-1][j+1];  //calcula castelijau
+            PosicaoXinversa[i][j]=(1-(t/(numeroDeAvaliacoes-1)))*PosicaoXinversa[i-1][j]+(t/(numeroDeAvaliacoes-1))*PosicaoXinversa[i-1][j+1];  //calcula castelijau
+            PosicaoYinversa[i][j]=(1-(t/(numeroDeAvaliacoes-1)))*PosicaoYinversa[i-1][j]+(t/(numeroDeAvaliacoes-1))*PosicaoYinversa[i-1][j+1];  //calcula castelijau
           }
     }
     //atribui os pontos da curva inversa
@@ -268,25 +268,25 @@ ctx.arc(diminuirSegmento1.x,diminuirSegmento1.y,10,0,2*Math.PI);
 ctx.arc(AumentaSegmento1.x,AumentaSegmento1.y,10,0,2*Math.PI);
 ctx.arc(diminuirSegmento100.x,diminuirSegmento100.y,10,0,2*Math.PI);//desenha botao 
 ctx.arc(AumentaSegmento100.x,AumentaSegmento100.y,10,0,2*Math.PI);//desenha botao 
-ctx.arc(ZeraSegmentos.x,ZeraSegmentos.y,10,0,2*Math.PI);//desenha botao
-ctx.fillStyle='blue';
+ctx.arc(ZeraAvaliacoes.x,ZeraAvaliacoes.y,10,0,2*Math.PI);//desenha botao
+ctx.fillStyle='black';
 ctx.fill();     //preenche
 ctx.closePath(); //termina desenho
 ctx.fillText("Esconder Pontos",40,25);//texto de esconder pontos 
-ctx.fillText("Esconder Poligonal Normal",40,75);//texto de poligonal normal
-ctx.fillText("Esconder Poligonal Inversa",40,125);//texto de poligonal inversa
-ctx.fillText("Esconder Curva Normal",40,175);//texto de curva normal 
-ctx.fillText("Esconder Curva Inversa",40,225);//texto de curva inversa
+ctx.fillText("Esconder Poligonal Normal (Linhas Laranjas)",40,75);//texto de poligonal normal
+ctx.fillText("Esconder Poligonal Inversa (Linhas Pretas)",40,125);//texto de poligonal inversa
+ctx.fillText("Esconder Curva Normal (Curva Verde)",40,175);//texto de curva normal 
+ctx.fillText("Esconder Curva Inversa (Curva Vermelha)",40,225);//texto de curva inversa
 ctx.fillText("Limpa Tudo",40,275);//texto de limpar tudo 
-ctx.fillText("Diminui Quantidade Segmentos em 1",40,325);//texto de diminuir quantidade de segmentos em 1 
-ctx.fillText("Aumenta Quantidade Segmentos em 1",40,375);//texto de aumentar quantidade de segmentos em 1 
-ctx.fillText("Diminui Quantidade Segmentos em 100",40,425);//texto de diminuir quantidade de segmentos em 100
-ctx.fillText("Aumenta Quantidade Segmentos em 100",40,475);//texto de aumentar quantidade de segmentos em 100 
-ctx.fillText("Zera Quantidade Segmentos",40,525);//texto de zerar quantidade segmentos
-ctx.fillText("Quantidade Segmentos Original 100",40,575);//texto de quantidade segmentos original
+ctx.fillText("Diminui Quantidade Avaliacoes em 1 (Começa em 100)",40,325);//texto de diminuir quantidade de Avaliacoes em 1 
+ctx.fillText("Aumenta Quantidade Avaliacoes em 1 (Começa em 100)",40,375);//texto de aumentar quantidade de Avaliacoes em 1 
+ctx.fillText("Diminui Quantidade Avaliacoes em 100 (Começa em 100)",40,425);//texto de diminuir quantidade de Avaliacoes em 100
+ctx.fillText("Aumenta Quantidade Avaliacoes em 100 (Começa em 100)",40,475);//texto de aumentar quantidade de Avaliacoes em 100 
+ctx.fillText("Zera Quantidade Avaliacoes",40,525);//texto de zerar quantidade Avaliacoes
+
 
 CastelijauNormal(); //calcula o castelijau da curva normal  
-for( var j=0;j<numeroDeSegmentos-1;j++){    //faz desenhos retas da curva ligando os numeroDeSegmentos-1 pontos  da curva normal
+for( var j=0;j<numeroDeAvaliacoes-1;j++){    //faz desenhos retas da curva ligando os numeroDeAvaliacoes-1 pontos  da curva normal
     ctx.beginPath();     //começa desenho
     ctx.strokeStyle = corcurvanomal  //cor reta verde 
     ctx.moveTo(PontoCurvaX[j],PontoCurvaY[j]);  //move cursor para X e Y do ponto na curva normal
@@ -303,7 +303,7 @@ for(var l=0;l<QuantidadePontos-1;l++){   //calcula a poligonal de controle da no
     ctx.closePath();//termina desenho
 }
 CastelijauInversa();      //calcula o castelijau da curva inversa
-for(var k=0;k<numeroDeSegmentos-1;k++){ //faz desenhos retas da curva ligando os numeroDeSegmentos-1 pontos da curva inversa
+for(var k=0;k<numeroDeAvaliacoes-1;k++){ //faz desenhos retas da curva ligando os numeroDeAvaliacoes-1 pontos da curva inversa
     ctx.beginPath();  //começa desenho
     ctx.strokeStyle = corcurvainversa  //cor reta vermelha
     ctx.moveTo(PontoCurvaX[k],PontoCurvaY[k]);  //move cursor para X e Y do ponto na curva inversa
@@ -328,7 +328,7 @@ canvas.addEventListener('click',function(e){		//faz algo quando clica
             ctx.fillStyle ='white'; //cor do preenchimento branco;
             pontosescondidos=true; //pontos estao escondidos 
         }else if(isInEsconderPontos({x:e.offsetX,y:e.offsetY})==true && pontosescondidos==true){ //se botao foi clicado e os pontos  estao escondidos
-            ctx.fillStyle ='blue'; //cor do preenchimento azul;
+            ctx.fillStyle ='black'; //cor do preenchimento azul;
             pontosescondidos=false; //pontos nao estao escondidos
         }else if(isInEsconderPoligonalNormal({x:e.offsetX,y:e.offsetY})==true && poligonalnormalescondida==false){ //se botao foi clicado e a poligonal normal nao esta escondida
          corpoligonalnormal="white"; //cor da poligonal normal branca
@@ -360,19 +360,19 @@ canvas.addEventListener('click',function(e){		//faz algo quando clica
            QuantidadePontos=0;  //apaga os pontos 
            limpado=true; //estado botao limpar 
            }else if(isInDiminuir1({x:e.offsetX,y:e.offsetY})==true){//se botao foi clicado 
-            if(numeroDeSegmentos-1>=0){  //se o numero de segmentos menos 1 nao for negativo 
-                numeroDeSegmentos=numeroDeSegmentos-1;  //diminua o numero de segmentos em 1
+            if(numeroDeAvaliacoes-1>=0){  //se o numero de Avaliacoes menos 1 nao for negativo 
+                numeroDeAvaliacoes=numeroDeAvaliacoes-1;  //diminua o numero de Avaliacoes em 1
             }
            } else if(isInAumentar1({x:e.offsetX,y:e.offsetY})==true ){//se botao foi clicado 
-            numeroDeSegmentos=numeroDeSegmentos+1; //numero de segmentos é aumentado em 1
+            numeroDeAvaliacoes=numeroDeAvaliacoes+1; //numero de Avaliacoes é aumentado em 1
            }else if(isInDiminuir100({x:e.offsetX,y:e.offsetY})==true ){//se botao foi clicado 
-            if(numeroDeSegmentos-100>=0){  //se o numero de segmentos menos 100 nao for negativo 
-                numeroDeSegmentos=numeroDeSegmentos-100;  //diminua o numero de segmentos em 100
+            if(numeroDeAvaliacoes-100>=0){  //se o numero de Avaliacoes menos 100 nao for negativo 
+                numeroDeAvaliacoes=numeroDeAvaliacoes-100;  //diminua o numero de Avaliacoes em 100
             }
            } else if(isInAumentar100({x:e.offsetX,y:e.offsetY})==true){//se botao foi clicado 
-            numeroDeSegmentos=numeroDeSegmentos+100; //numero de segmentos é aumentado em 100
-           }else if(isInZeraSegmentos({x:e.offsetX,y:e.offsetY})==true){//se botao foi clicado 
-            numeroDeSegmentos=0; //numero de segmentos é zerado
+            numeroDeAvaliacoes=numeroDeAvaliacoes+100; //numero de Avaliacoes é aumentado em 100
+           }else if(isInZeraAvaliacoes({x:e.offsetX,y:e.offsetY})==true){//se botao foi clicado 
+            numeroDeAvaliacoes=0; //numero de Avaliacoes é zerado
            }else{
     		PosicaoXnormal[0][QuantidadePontos]=[e.offsetX];   //atribui o valor x do click a ao array de posições dos pontos de controle da curva normal 
     		PosicaoYnormal[0][QuantidadePontos]=[e.offsetY];   //atribui o valor y do click a ao array de posições dos pontos de controle da curva normal 
@@ -406,22 +406,21 @@ canvas.addEventListener('click',function(e){		//faz algo quando clica
             ctx.arc(AumentaSegmento1.x,AumentaSegmento1.y,10,0,2*Math.PI);//desenha botao
             ctx.arc(diminuirSegmento100.x,diminuirSegmento100.y,10,0,2*Math.PI);//desenha botao
             ctx.arc(AumentaSegmento100.x,AumentaSegmento100.y,10,0,2*Math.PI);//desenha botao
-            ctx.arc(ZeraSegmentos.x,ZeraSegmentos.y,10,0,2*Math.PI);//desenha botao
-            ctx.fillStyle='blue';
+            ctx.arc(ZeraAvaliacoes.x,ZeraAvaliacoes.y,10,0,2*Math.PI);//desenha botao
+            ctx.fillStyle='black';
             ctx.fill();     //preenche
             ctx.closePath(); //termina desenho)
             ctx.fillText("Esconder Pontos",40,25);//texto de esconder pontos 
-            ctx.fillText("Esconder Poligonal Normal",40,75);//texto de poligonal normal
-            ctx.fillText("Esconder Poligonal Inversa",40,125);//texto de poligonal inversa
-            ctx.fillText("Esconder Curva Normal",40,175);//texto de curva normal 
-            ctx.fillText("Esconder Curva Inversa",40,225);//texto de curva inversa
+            ctx.fillText("Esconder Poligonal Normal (Linhas Laranjas)",40,75);//texto de poligonal normal
+			ctx.fillText("Esconder Poligonal Inversa (Linhas Pretas)",40,125);//texto de poligonal inversa
+			ctx.fillText("Esconder Curva Normal (Curva Verde)",40,175);//texto de curva normal 
+			ctx.fillText("Esconder Curva Inversa (Curva Vermelha)",40,225);//texto de curva inversa
             ctx.fillText("Limpa Tudo",40,275);//texto de limpar tudo 
-            ctx.fillText("Diminui Quantidade Segmentos em 1",40,325);//texto de diminuir quantidade de segmentos em 1 
-            ctx.fillText("Aumenta Quantidade Segmentos em 1",40,375);//texto de aumentar quantidade de segmentos em 1 
-            ctx.fillText("Diminui Quantidade Segmentos em 100",40,425);//texto de diminuir quantidade de segmentos em 100
-            ctx.fillText("Aumenta Quantidade Segmentos em 100",40,475);//texto de aumentar quantidade de segmentos em 100 
-            ctx.fillText("Zera Quantidade Segmentos",40,525);//texto de zerar quantidade segmentos
-            ctx.fillText("Quantidade Segmentos Original 100",40,575);//texto de quantidade segmentos original
+            ctx.fillText("Diminui Quantidade Avaliacoes em 1 (Começa em 100)",40,325);//texto de diminuir quantidade de Avaliacoes em 1 
+            ctx.fillText("Aumenta Quantidade Avaliacoes em 1 (Começa em 100)",40,375);//texto de aumentar quantidade de Avaliacoes em 1 
+            ctx.fillText("Diminui Quantidade Avaliacoes em 100 (Começa em 100)",40,425);//texto de diminuir quantidade de Avaliacoes em 100
+            ctx.fillText("Aumenta Quantidade Avaliacoes em 100 (Começa em 100)",40,475);//texto de aumentar quantidade de Avaliacoes em 100 
+            ctx.fillText("Zera Quantidade Avaliacoes",40,525);//texto de zerar quantidade Avaliacoes       
             limpado=false;
         }else{
             AtualizarCanvas(); //repassa novas informações ao canvas
